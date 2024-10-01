@@ -82,7 +82,6 @@ export default function TaskForm({
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(e.target);
     // onSubmit({ title, taskDescription, dueDate, status, priority });
     onClose(); // Close modal after submitting
   };
