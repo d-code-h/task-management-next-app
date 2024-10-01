@@ -175,20 +175,32 @@ import { TasksContextType } from '../lib/types';
 //     attachments: ['design_mockup_v1.png', 'api_documentation.pdf'],
 //   },
 // ];
-const states = ['To Do', 'In Progress', 'Done'];
+const states = [
+  {
+    value: 'todo',
+    text: 'To do',
+  },
+  {
+    value: 'in-progress',
+    text: 'In Progress',
+  },
+  {
+    value: 'done',
+    text: 'Done',
+  },
+];
 
 export default function Cards() {
   const { tasks } = useContext(Context) as TasksContextType;
-  console.log(tasks[0]);
 
   return (
     <div className="flex flex-col md:flex-row gap-5 md:justify-between max-w-screen-lg mx-auto">
-      {states.map((state) => (
-        <section key={state} className="border border-gray-10 rounded-md p-3">
-          <h2 className="text-center text-xl font-bold my-3">{state}</h2>
+      {states.map(({ value, text }: { value: string; text: string }) => (
+        <section key={value} className="border border-gray-10 rounded-md p-3">
+          <h2 className="text-center text-xl font-bold my-3">{text}</h2>
           <div className="flex flex-col gap-2">
             {tasks
-              .filter(({ status }: { status: string }) => state === status)
+              .filter(({ status }: { status: string }) => value === status)
               .map((task) => (
                 <div
                   key={task.id}

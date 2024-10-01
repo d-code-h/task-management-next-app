@@ -11,7 +11,7 @@ const tasksData = [
     title: 'Implement User Authentication',
     description:
       'Create the backend logic for user signup and login using JWT.',
-    status: 'To Do',
+    status: 'todo',
     priority: 'High',
     dueDate: '2024-10-10T00:00:00Z',
     createdAt: '2024-09-28T12:00:00Z',
@@ -28,7 +28,7 @@ const tasksData = [
     title: 'Implement User Authentication',
     description:
       'Create the backend logic for user signup and login using JWT.',
-    status: 'In Progress',
+    status: 'in-progress',
     priority: 'High',
     dueDate: '2024-10-10T00:00:00Z',
     createdAt: '2024-09-28T12:00:00Z',
@@ -45,7 +45,7 @@ const tasksData = [
     title: 'Implement User Authentication',
     description:
       'Create the backend logic for user signup and login using JWT.',
-    status: 'In Progress',
+    status: 'in-progress',
     priority: 'High',
     dueDate: '2024-10-10T00:00:00Z',
     createdAt: '2024-09-28T12:00:00Z',
@@ -62,7 +62,7 @@ const tasksData = [
     title: 'Implement User Authentication',
     description:
       'Create the backend logic for user signup and login using JWT.',
-    status: 'To Do',
+    status: 'todo',
     priority: 'High',
     dueDate: '2024-10-10T00:00:00Z',
     createdAt: '2024-09-28T12:00:00Z',
@@ -79,7 +79,7 @@ const tasksData = [
     title: 'Implement User Authentication',
     description:
       'Create the backend logic for user signup and login using JWT.',
-    status: 'Done',
+    status: 'done',
     priority: 'High',
     dueDate: '2024-10-10T00:00:00Z',
     createdAt: '2024-09-28T12:00:00Z',
@@ -96,7 +96,7 @@ const tasksData = [
     title: 'Implement User Authentication',
     description:
       'Create the backend logic for user signup and login using JWT.',
-    status: 'To Do',
+    status: 'todo',
     priority: 'High',
     dueDate: '2024-10-10T00:00:00Z',
     createdAt: '2024-09-28T12:00:00Z',
@@ -113,7 +113,7 @@ const tasksData = [
     title: 'Implement User Authentication',
     description:
       'Create the backend logic for user signup and login using JWT.',
-    status: 'To Do',
+    status: 'todo',
     priority: 'High',
     dueDate: '2024-10-10T00:00:00Z',
     createdAt: '2024-09-28T12:00:00Z',
@@ -130,7 +130,7 @@ const tasksData = [
     title: 'Implement User Authentication',
     description:
       'Create the backend logic for user signup and login using JWT.',
-    status: 'Done',
+    status: 'done',
     priority: 'High',
     dueDate: '2024-10-10T00:00:00Z',
     createdAt: '2024-09-28T12:00:00Z',
@@ -147,7 +147,7 @@ const tasksData = [
     title: 'Implement User Authentication',
     description:
       'Create the backend logic for user signup and login using JWT.',
-    status: 'To Do',
+    status: 'todo',
     priority: 'High',
     dueDate: '2024-10-10T00:00:00Z',
     createdAt: '2024-09-28T12:00:00Z',
@@ -164,7 +164,7 @@ const tasksData = [
     title: 'Implement User Authentication',
     description:
       'Create the backend logic for user signup and login using JWT.',
-    status: 'Done',
+    status: 'done',
     priority: 'High',
     dueDate: '2024-10-10T00:00:00Z',
     createdAt: '2024-09-28T12:00:00Z',

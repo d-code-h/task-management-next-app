@@ -1,5 +1,7 @@
-import { FormEvent, useState } from 'react';
+import { FormEvent, useContext, useState } from 'react';
 import FormControl from './forms/FormControl';
+import { Context } from '../context/TasksContext';
+import { TasksContextType, TaskType } from '../lib/types';
 
 export default function TaskForm({
   isOpen,
@@ -13,6 +15,7 @@ export default function TaskForm({
   const [dueDate, setDueDate] = useState('');
   const [status, setStatus] = useState('todo');
   const [priority, setPriority] = useState('low');
+  const { tasks, setTasks } = useContext(Context) as TasksContextType;
 
   const fields = [
     {
@@ -82,7 +85,24 @@ export default function TaskForm({
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // onSubmit({ title, taskDescription, dueDate, status, priority });
+    const newTask = {
+      title,
+      taskDescription,
+      dueDate,
+      status,
+      priority,
+
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      assignedTo: '',
+      comments: [],
+      attachments: [],
+    };
+
+    console.log(tasks);
+
+    setTasks((prev) => [...prev, newTask] as TaskType[]);
+
     onClose(); // Close modal after submitting
   };
 
