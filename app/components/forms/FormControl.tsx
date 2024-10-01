@@ -17,7 +17,7 @@ export default function FormControl({
   property: string;
   setProperty: Dispatch<SetStateAction<string>>;
   type: string;
-  options?: { value: string; text: string }[];
+  options?: string[];
 }) {
   return (
     <div>
@@ -27,7 +27,7 @@ export default function FormControl({
         <Select
           property={property}
           setPriority={setProperty}
-          options={options as { value: string; text: string }[]}
+          options={options as string[]}
         />
       ) : type === 'textarea' ? (
         <TextArea property={property} setProperty={setProperty} />

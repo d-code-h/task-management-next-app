@@ -11,7 +11,7 @@ export default function TaskForm({
   onClose: () => void;
 }) {
   const [title, setTitle] = useState('');
-  const [taskDescription, setTaskDescription] = useState('');
+  const [description, setDescription] = useState('');
   const [dueDate, setDueDate] = useState('');
   const [status, setStatus] = useState('todo');
   const [priority, setPriority] = useState('low');
@@ -28,8 +28,8 @@ export default function TaskForm({
     {
       title: 'task-description',
       text: 'Task Description',
-      property: taskDescription,
-      setProperty: setTaskDescription,
+      property: description,
+      setProperty: setDescription,
       type: 'textarea',
     },
     {
@@ -45,20 +45,7 @@ export default function TaskForm({
       property: status,
       setProperty: setStatus,
       type: 'select',
-      options: [
-        {
-          value: 'todo',
-          text: 'To Do',
-        },
-        {
-          value: 'in-progress',
-          text: 'In Progress',
-        },
-        {
-          value: 'done',
-          text: 'Done',
-        },
-      ],
+      options: ['Todo', 'In Progress', 'Done'],
     },
     {
       title: 'piority',
@@ -66,40 +53,27 @@ export default function TaskForm({
       property: priority,
       setProperty: setPriority,
       type: 'select',
-      options: [
-        {
-          value: 'low',
-          text: 'Low',
-        },
-        {
-          value: 'medium',
-          text: 'Medium',
-        },
-        {
-          value: 'high',
-          text: 'High',
-        },
-      ],
+      options: ['Low', 'Medium', 'High'],
     },
   ];
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     const newTask = {
+      id: String(Math.random() * 100),
       title,
-      taskDescription,
-      dueDate,
+      description,
+      dueDate: new Date(dueDate),
       status,
       priority,
 
       createdAt: new Date(),
       updatedAt: new Date(),
-      assignedTo: '',
+      assignedTo: 'Userx',
       comments: [],
       attachments: [],
     };
-
-    console.log(tasks);
 
     setTasks((prev) => [...prev, newTask] as TaskType[]);
 
@@ -129,7 +103,7 @@ export default function TaskForm({
                   property={property}
                   setProperty={setProperty}
                   type={type}
-                  options={options}
+                  options={options as string[]}
                 />
               )
             )}

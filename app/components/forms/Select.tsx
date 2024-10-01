@@ -7,7 +7,7 @@ export default function Select({
 }: {
   property: string;
   setPriority: Dispatch<SetStateAction<string>>;
-  options: { value: string; text: string }[];
+  options: string[];
 }) {
   return (
     <select
@@ -16,9 +16,9 @@ export default function Select({
       onChange={(e) => setPriority(e.target.value)}
       className="p-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
     >
-      {options.map(({ value, text }: { value: string; text: string }) => (
+      {options.map((value: string) => (
         <option key={value} value={value}>
-          {text}
+          {value}
         </option>
       ))}
     </select>

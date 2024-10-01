@@ -6,7 +6,7 @@ interface TaskType {
   description: string;
   status: string;
   priority: string;
-  dueDate: string;
+  dueDate: Date;
   createdAt: string;
   updatedAt: string;
   assignedTo: string;
