@@ -10,7 +10,7 @@ The **Task Management Next App** is a simple and user-friendly tool to help user
   - [Overview](#overview)
   - [Table of Contents](#table-of-contents)
   - [Features](#features)
-  - [Project Structure](#project-structure)
+  <!-- - [Project Structure](#project-structure) -->
   - [Getting Started](#getting-started)
     - [Prerequisites](#prerequisites)
     - [Setup](#setup)
@@ -32,7 +32,7 @@ The **Task Management Next App** is a simple and user-friendly tool to help user
 
 ## Project Structure
 
-```.
+<!-- ```.
 task-manager/
 │
 ├── app/                    // New folder for routing in Next.js 14+
@@ -63,7 +63,7 @@ task-manager/
 ├── README.md               // Readme file for the project
 └── .eslintrc.json            // ESLint configuration
 
-```
+``` -->
 
 ## Getting Started
 
