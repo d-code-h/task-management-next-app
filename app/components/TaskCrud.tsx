@@ -1,12 +1,15 @@
 'use client';
-import { useState } from 'react';
+import { useContext } from 'react';
 import TaskForm from './TaskForm';
 import clsx from 'clsx';
+import { Context } from '../context/TasksContext';
+import { TasksContextType } from '../lib/types';
 
 export default function TaskCrud() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { isModalOpen, setIsModalOpen, handleOpenModal } = useContext(
+    Context
+  ) as TasksContextType;
 
-  const handleOpenModal = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
 
   return (

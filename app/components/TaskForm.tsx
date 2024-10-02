@@ -1,4 +1,4 @@
-import { FormEvent, useContext, useState } from 'react';
+import { FormEvent, useContext } from 'react';
 import FormControl from './forms/FormControl';
 import { Context } from '../context/TasksContext';
 import { TasksContextType, TaskType } from '../lib/types';
@@ -10,48 +10,41 @@ export default function TaskForm({
   isOpen: boolean;
   onClose: () => void;
 }) {
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [dueDate, setDueDate] = useState('');
-  const [status, setStatus] = useState('todo');
-  const [priority, setPriority] = useState('low');
-  const { tasks, setTasks } = useContext(Context) as TasksContextType;
+  const {
+    formData: { title, description, dueDate, status, priority },
+    setTasks,
+  } = useContext(Context) as TasksContextType;
 
   const fields = [
     {
       title: 'task-title',
       text: 'Task Title',
-      property: title,
-      setProperty: setTitle,
+      property: 'title',
       type: 'text',
     },
     {
       title: 'task-description',
       text: 'Task Description',
-      property: description,
-      setProperty: setDescription,
+      property: 'description',
       type: 'textarea',
     },
     {
       title: 'due-date',
       text: 'Due-Date',
-      property: dueDate,
-      setProperty: setDueDate,
+      property: 'dueDate',
       type: 'date',
     },
     {
       title: 'status',
       text: 'Status',
-      property: status,
-      setProperty: setStatus,
+      property: 'status',
       type: 'select',
       options: ['Todo', 'In Progress', 'Done'],
     },
     {
-      title: 'piority',
+      title: 'priority',
       text: 'Priority',
-      property: priority,
-      setProperty: setPriority,
+      property: 'priority',
       type: 'select',
       options: ['Low', 'Medium', 'High'],
     },
@@ -94,19 +87,16 @@ export default function TaskForm({
             Add New Task
           </h2>
           <form className="space-y-4" onSubmit={handleSubmit}>
-            {fields.map(
-              ({ title, text, property, setProperty, type, options }) => (
-                <FormControl
-                  key={title}
-                  title={title}
-                  text={text}
-                  property={property}
-                  setProperty={setProperty}
-                  type={type}
-                  options={options as string[]}
-                />
-              )
-            )}
+            {fields.map(({ title, text, property, type, options }) => (
+              <FormControl
+                key={title}
+                title={title}
+                text={text}
+                type={type}
+                property={property}
+                options={options as string[]}
+              />
+            ))}
 
             <div className="flex justify-end">
               <button

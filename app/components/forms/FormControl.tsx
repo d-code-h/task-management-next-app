@@ -1,4 +1,3 @@
-import React, { Dispatch, SetStateAction } from 'react';
 import Label from './Label';
 import Input from './Input';
 import TextArea from './TextArea';
@@ -8,14 +7,12 @@ export default function FormControl({
   title,
   text,
   property,
-  setProperty,
   type,
   options,
 }: {
   title: string;
   text: string;
   property: string;
-  setProperty: Dispatch<SetStateAction<string>>;
   type: string;
   options?: string[];
 }) {
@@ -24,15 +21,11 @@ export default function FormControl({
       <Label title={title} text={text} />
 
       {type === 'select' ? (
-        <Select
-          property={property}
-          setPriority={setProperty}
-          options={options as string[]}
-        />
+        <Select property={property} options={options as string[]} />
       ) : type === 'textarea' ? (
-        <TextArea property={property} setProperty={setProperty} />
+        <TextArea property={property} />
       ) : (
-        <Input property={property} setProperty={setProperty} type={type} />
+        <Input property={property} type={type} />
       )}
     </div>
   );

@@ -180,7 +180,11 @@ import clsx from 'clsx';
 const states = ['Todo', 'In Progress', 'Done'];
 
 export default function Cards() {
-  const { tasks } = useContext(Context) as TasksContextType;
+  const { tasks, setIsModalOpen } = useContext(Context) as TasksContextType;
+
+  const handleEdit = (task: TaskType) => {
+    setIsModalOpen(true);
+  };
 
   return (
     <div className="flex flex-col md:flex-row gap-5 md:justify-between max-w-screen-lg mx-auto">
@@ -190,58 +194,52 @@ export default function Cards() {
           <div className="flex flex-col gap-2">
             {tasks
               .filter(({ status }: { status: string }) => state === status)
-              .map(
-                ({
-                  id,
-                  title,
-                  priority,
-                  dueDate,
-                  assignedTo,
-                  description,
-                }: TaskType) => (
-                  <div
-                    key={id}
-                    className="border px-3 py-2 rounded-md bg-gray-50 hover:outline hover:outline-1 hover:border-none"
-                  >
-                    <div>
-                      <h2 className="flex justify-between py-2">
-                        <span className="font-bold">{title}</span>
+              .map((task: TaskType) => (
+                <div
+                  key={task.id}
+                  className="border px-3 py-2 rounded-md bg-gray-50 hover:outline hover:outline-1 hover:border-none"
+                >
+                  <div>
+                    <h2 className="flex justify-between py-2">
+                      <span className="font-bold">{task.title}</span>
+                      <span
+                        className={clsx(
+                          task.priority === 'Low'
+                            ? 'text-blue-500'
+                            : task.priority === 'Medium'
+                            ? 'text-yellow-500'
+                            : 'text-red-500'
+                        )}
+                      >
+                        {task.priority}
+                      </span>
+                    </h2>
+                    <h4>
+                      {task.dueDate.getDay()}/{task.dueDate.getMonth()}/
+                      {task.dueDate.getFullYear()}
+                    </h4>
+                    <p className="my-2">{task.description}</p>
+
+                    <div className="flex justify-between">
+                      <span className="bg-gray-100 px-2 py-1 rounded-md">
+                        {task.assignedTo}
+                      </span>
+
+                      <div className="flex gap-3">
                         <span
-                          className={clsx(
-                            priority === 'Low'
-                              ? 'text-blue-500'
-                              : priority === 'Medium'
-                              ? 'text-yellow-500'
-                              : 'text-red-500'
-                          )}
+                          className="bg-gray-100 rounded-full flex justify-center items-center w-6 h-6"
+                          onClick={() => handleEdit(task)}
                         >
-                          {priority}
+                          <MdEdit className=" fill-yellow-500" />
                         </span>
-                      </h2>
-                      <h4>
-                        {dueDate.getDay()}/{dueDate.getMonth()}/
-                        {dueDate.getFullYear()}
-                      </h4>
-                      <p className="my-2">{description}</p>
-
-                      <div className="flex justify-between">
-                        <span className="bg-gray-100 px-2 py-1 rounded-md">
-                          {assignedTo}
+                        <span className="bg-gray-100 rounded-full flex justify-center items-center w-6 h-6">
+                          <MdDelete className="fill-red-500" />
                         </span>
-
-                        <div className="flex gap-3">
-                          <span className="bg-gray-100 rounded-full flex justify-center items-center w-6 h-6">
-                            <MdEdit className=" fill-yellow-500" />
-                          </span>
-                          <span className="bg-gray-100 rounded-full flex justify-center items-center w-6 h-6">
-                            <MdDelete className="fill-red-500" />
-                          </span>
-                        </div>
                       </div>
                     </div>
                   </div>
-                )
-              )}
+                </div>
+              ))}
           </div>
         </section>
       ))}

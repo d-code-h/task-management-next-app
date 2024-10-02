@@ -1,7 +1,7 @@
 'use client';
 
 import { createContext, ReactNode, useState } from 'react';
-import { TasksContextType, TaskType } from '../lib/types';
+import { FormType, TasksContextType, TaskType } from '../lib/types';
 
 export const Context = createContext<null | TasksContextType>(null);
 
@@ -180,12 +180,28 @@ const tasksData = [
 
 const TasksContext = ({ children }: { children: ReactNode }) => {
   const [tasks, setTasks] = useState<TaskType[]>(tasksData);
+  const [formData, setFormData] = useState<FormType>({
+    title: '',
+    description: '',
+    dueDate: '',
+    status: 'Todo',
+    priority: 'Low',
+  });
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const handleOpenModal = () => setIsModalOpen(true);
+  const handleCloseModal = () => setIsModalOpen(false);
 
   return (
     <Context.Provider
       value={{
         tasks,
+        formData,
+        setFormData,
         setTasks,
+        isModalOpen,
+        setIsModalOpen,
+        handleOpenModal,
+        handleCloseModal,
       }}
     >
       {children}
