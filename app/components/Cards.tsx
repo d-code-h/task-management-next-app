@@ -183,6 +183,7 @@ export default function Cards() {
   const { tasks, setIsModalOpen } = useContext(Context) as TasksContextType;
 
   const handleEdit = (task: TaskType) => {
+    console.log(task);
     setIsModalOpen(true);
   };
 
