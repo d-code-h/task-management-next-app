@@ -5,7 +5,7 @@ import { useContext } from 'react';
 import { Context } from '../context/TasksContext';
 
 export default function Card({ task }: { task: TaskType }) {
-  const { setFormData, setIsModalOpen, setFormMode } = useContext(
+  const { setTasks, setFormData, setIsModalOpen, setFormMode } = useContext(
     Context
   ) as TasksContextType;
 
@@ -27,6 +27,10 @@ export default function Card({ task }: { task: TaskType }) {
     });
     setFormMode(task.id);
     setIsModalOpen(true);
+  };
+
+  const handleDelete = (id: string) => {
+    setTasks((prev) => prev.filter((task) => task.id !== id));
   };
   return (
     <div
@@ -63,7 +67,10 @@ export default function Card({ task }: { task: TaskType }) {
             >
               <MdEdit className=" fill-yellow-500" />
             </span>
-            <span className="bg-gray-100 rounded-full flex justify-center items-center w-6 h-6">
+            <span
+              className="bg-gray-100 rounded-full flex justify-center items-center w-6 h-6"
+              onClick={() => handleDelete(task.id)}
+            >
               <MdDelete className="fill-red-500" />
             </span>
           </div>
