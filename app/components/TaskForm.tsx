@@ -11,8 +11,12 @@ export default function TaskForm({
   onClose: () => void;
 }) {
   const {
+    formInitial,
     formData: { title, description, dueDate, status, priority },
+    setFormData,
+    tasks,
     setTasks,
+    formMode,
   } = useContext(Context) as TasksContextType;
 
   const fields = [
@@ -53,23 +57,41 @@ export default function TaskForm({
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const newTask = {
-      id: String(Math.random() * 100),
-      title,
-      description,
-      dueDate: new Date(dueDate),
-      status,
-      priority,
+    if (formMode) {
+      let taskToUpdate = tasks.find((task) => task.id === formMode) as TaskType;
+      console.log(taskToUpdate);
+      taskToUpdate = {
+        ...taskToUpdate,
+        title,
+        description,
+        dueDate: new Date(dueDate),
+        status,
+        priority,
+      };
 
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      assignedTo: 'Userx',
-      comments: [],
-      attachments: [],
-    };
+      setTasks((prev: TaskType[]) => [
+        ...prev.filter((task) => task.id !== formMode),
+        taskToUpdate,
+      ]);
+    } else {
+      const newTask = {
+        id: String(Math.random() * 100),
+        title,
+        description,
+        dueDate: new Date(dueDate),
+        status,
+        priority,
 
-    setTasks((prev) => [...prev, newTask] as TaskType[]);
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        assignedTo: 'Userx',
+        comments: [],
+        attachments: [],
+      };
 
+      setTasks((prev) => [...prev, newTask] as TaskType[]);
+    }
+    setFormData(() => formInitial);
     onClose(); // Close modal after submitting
   };
 
@@ -84,7 +106,14 @@ export default function TaskForm({
             &times;
           </button>
           <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-            Add New Task
+            {formMode ? (
+              <>
+                <span>Edit </span>
+                <span className="text-gray-500">#{formMode}</span>
+              </>
+            ) : (
+              'Add New Task'
+            )}
           </h2>
           <form className="space-y-4" onSubmit={handleSubmit}>
             {fields.map(({ title, text, property, type, options }) => (
@@ -103,7 +132,7 @@ export default function TaskForm({
                 type="submit"
                 className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md shadow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
               >
-                Add Task
+                {formMode ? 'Update Task' : 'Add Task'}
               </button>
             </div>
           </form>

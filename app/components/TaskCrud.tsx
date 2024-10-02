@@ -6,11 +6,9 @@ import { Context } from '../context/TasksContext';
 import { TasksContextType } from '../lib/types';
 
 export default function TaskCrud() {
-  const { isModalOpen, setIsModalOpen, handleOpenModal } = useContext(
+  const { isModalOpen, handleOpenModal, handleCloseModal } = useContext(
     Context
   ) as TasksContextType;
-
-  const handleCloseModal = () => setIsModalOpen(false);
 
   return (
     <div className="container mx-auto p-4">

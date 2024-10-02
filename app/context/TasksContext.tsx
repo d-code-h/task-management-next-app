@@ -180,21 +180,28 @@ const tasksData = [
 
 const TasksContext = ({ children }: { children: ReactNode }) => {
   const [tasks, setTasks] = useState<TaskType[]>(tasksData);
-  const [formData, setFormData] = useState<FormType>({
+  const formInitial: FormType = {
     title: '',
     description: '',
     dueDate: '',
     status: 'Todo',
     priority: 'Low',
-  });
+  };
+  const [formData, setFormData] = useState<FormType>(formInitial);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [formMode, setFormMode] = useState<string>('');
   const handleOpenModal = () => setIsModalOpen(true);
-  const handleCloseModal = () => setIsModalOpen(false);
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setFormMode('');
+    setFormData(formInitial);
+  };
 
   return (
     <Context.Provider
       value={{
         tasks,
+        formInitial,
         formData,
         setFormData,
         setTasks,
@@ -202,6 +209,8 @@ const TasksContext = ({ children }: { children: ReactNode }) => {
         setIsModalOpen,
         handleOpenModal,
         handleCloseModal,
+        formMode,
+        setFormMode,
       }}
     >
       {children}

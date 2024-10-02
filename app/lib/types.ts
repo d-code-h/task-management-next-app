@@ -24,6 +24,7 @@ interface TaskType {
 
 interface TasksContextType {
   tasks: TaskType[];
+  formInitial: FormType;
   formData: FormType;
   setFormData: Dispatch<SetStateAction<FormType>>;
   setTasks: Dispatch<SetStateAction<TaskType[]>>;
@@ -31,6 +32,8 @@ interface TasksContextType {
   setIsModalOpen: Dispatch<SetStateAction<boolean>>;
   handleOpenModal: () => void;
   handleCloseModal: () => void;
+  formMode: string;
+  setFormMode: Dispatch<SetStateAction<string>>;
 }
 
 export type { FormType, TaskType, TasksContextType };
